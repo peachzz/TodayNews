@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.terry.todaynews.MainActivity">
+
+    <item
+        android:icon="@mipmap/ic_search"
+        android:id="@+id/bar_search"
+        android:orderInCategory="80"
+        android:title="action_search"
+        app:showAsAction="ifRoom|collapseActionView"></item>
+
+    <item
+        android:icon="@mipmap/ic_share"
+        android:id="@+id/bar_share"
+        android:orderInCategory="90"
+        android:title="action_share"
+        app:showAsAction="ifRoom"></item>
+
+    <item
+        android:icon="@mipmap/ic_menu_more_overflow"
+        android:id="@+id/bar_setting"
+        android:orderInCategory="100"
+        android:title="action_setting"
+        app:showAsAction="never"></item>
+
+</menu>
