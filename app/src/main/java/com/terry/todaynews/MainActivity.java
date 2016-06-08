@@ -1,5 +1,6 @@
 package com.terry.todaynews;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,9 +11,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.terry.todaynews.fragment.NewsFragment;
+import com.terry.todaynews.fragment.NewsListFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
 
     private Toolbar mToolbar;
@@ -22,10 +24,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initView();
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         initEvent();
-        //设置Toolbar菜单监听事件
+    }
+
+    private void initEvent() {
+        setSupportActionBar(mToolbar);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.container);
+        if (fragment == null) {
+            fragment = new NewsFragment();
+            fm.beginTransaction().add(R.id.container, fragment).commitAllowingStateLoss();
+        }
+
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -45,23 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
     }
 
-    private void initEvent() {
-        setSupportActionBar(mToolbar);
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.container);
-        if (fragment == null) {
-            fragment = new NewsFragment();
-            fm.beginTransaction().add(R.id.container, fragment).commitAllowingStateLoss();
-        }
-    }
-
-    private void initView() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
